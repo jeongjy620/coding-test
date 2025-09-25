@@ -39,4 +39,25 @@ class Week26JeongjySolutionTest {
                 Arguments.of(-4, 2, new long[]{-4, -8})
         );
     }
+
+    @DisplayName("행렬의 덧셈")
+    @ParameterizedTest
+    @MethodSource("plusRowColProvider")
+    void plusRowCol(int[][] arr1, int[][] arr2, int[][] expected) {
+        // given
+        Week26JeongjySolution solution = new Week26JeongjySolution();
+
+        // when
+        int[][] actual = solution.plusRowCol(arr1, arr2);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> plusRowColProvider() {
+        return Stream.of(
+                Arguments.of(new int[][]{{1, 2}, {2, 3}}, new int[][]{{3, 4}, {5, 6}}, new int[][]{{4, 6}, {7, 9}}),
+                Arguments.of(new int[][]{{1}, {2}}, new int[][]{{3}, {4}}, new int[][]{{4}, {6}})
+        );
+    }
 }

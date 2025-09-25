@@ -23,4 +23,31 @@ public class Week26JeongjySolution {
 
         return answer;
     }
+
+    public int hIndex(int[] citations) {
+        int n = citations.length;
+        int left = 0;
+        int right = n;
+
+        while (left < right) {
+            int mid = (left + right + 1) / 2;
+            if (isPossible(citations, mid)) {
+                left = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return left;
+    }
+
+    private boolean isPossible(int[] citations, int h) {
+        int count = 0;
+        for (int citation : citations) {
+            if (citation >= h) {
+                count++;
+            }
+        }
+        return count >= h;
+    }
 }

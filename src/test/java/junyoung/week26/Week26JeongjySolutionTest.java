@@ -60,4 +60,25 @@ class Week26JeongjySolutionTest {
                 Arguments.of(new int[][]{{1}, {2}}, new int[][]{{3}, {4}}, new int[][]{{4}, {6}})
         );
     }
+
+    @DisplayName("H-Index")
+    @ParameterizedTest
+    @MethodSource("hIndexProvider")
+    void hIndex(int[] citations, int expected) {
+        // given
+        Week26JeongjySolution solution = new Week26JeongjySolution();
+
+        // when
+        int actual = solution.hIndex(citations);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> hIndexProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{3, 0, 6, 1, 5}, 3),
+                Arguments.of(new int[]{1, 2, 3, 4, 5}, 3)
+        );
+    }
 }

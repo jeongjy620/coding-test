@@ -3,12 +3,12 @@ package junyoung.week29;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Week29JeongjySolutionTest {
 
@@ -22,7 +22,7 @@ class Week29JeongjySolutionTest {
         int result = solution.budget(d, budget);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     private static Stream<Arguments> budgetProvider() {
@@ -40,7 +40,7 @@ class Week29JeongjySolutionTest {
         int[] result = solution.pickTwoAndSum(numbers);
 
         // then
-        assertArrayEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     private static Stream<Arguments> pickTwoAndSumProvider() {
@@ -49,4 +49,19 @@ class Week29JeongjySolutionTest {
                 Arguments.of(new int[]{5, 0, 2, 7}, new int[]{2, 5, 7, 9, 12})
         );
     }
+
+    @DisplayName("3진법 뒤집기")
+    @ParameterizedTest
+    @CsvSource({
+            "45, 7",
+            "125, 229"
+    })
+    void reverseTernary(int n, int expected) {
+        // given & when
+        int result = solution.reverseTernary(n);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
 }
